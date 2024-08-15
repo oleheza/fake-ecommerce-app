@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">ComposeFakeEcommerceApp</string>
+
+    <string name="categories_title">Categories</string>
+    <string name="failed_to_load_data">Failed to load data</string>
+    <string name="retry">Retry</string>
 </resources>

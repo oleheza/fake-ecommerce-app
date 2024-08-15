@@ -1,4 +1,4 @@
-package ua.oldev.fakeecommerceapp.ui.theme
+package ua.oldev.fakeecommerceapp.core.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
