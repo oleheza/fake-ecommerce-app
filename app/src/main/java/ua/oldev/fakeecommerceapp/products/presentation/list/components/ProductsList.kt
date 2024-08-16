@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ua.oldev.fakeecommerceapp.core.presentation.fakeProducts
 import ua.oldev.fakeecommerceapp.core.presentation.theme.ComposeFakeEcommerceAppTheme
 import ua.oldev.fakeecommerceapp.products.domain.model.ProductModel
 
@@ -39,11 +40,7 @@ fun ProductsList(
 private fun ProductsListPreview() {
     ComposeFakeEcommerceAppTheme {
         ProductsList(
-            products = listOf(
-                ProductModel(id = 0, title = "Product 1", image = ""),
-                ProductModel(id = 1, title = "Product 2", image = ""),
-                ProductModel(id = 2, title = "Product 3", image = ""),
-            ),
+            products = fakeProducts,
             onProductClick = {},
         )
     }

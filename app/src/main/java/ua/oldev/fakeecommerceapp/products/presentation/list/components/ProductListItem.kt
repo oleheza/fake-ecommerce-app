@@ -13,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import ua.oldev.fakeecommerceapp.core.presentation.fakeProduct2
 import ua.oldev.fakeecommerceapp.core.presentation.theme.ComposeFakeEcommerceAppTheme
 import ua.oldev.fakeecommerceapp.products.domain.model.ProductModel
 
@@ -45,12 +46,6 @@ fun ProductListItem(
 @Composable
 private fun ProductListItemPreview() {
     ComposeFakeEcommerceAppTheme {
-        ProductListItem(
-            productModel = ProductModel(
-                id = 0,
-                title = "Product 1",
-                image = ""
-            )
-        )
+        ProductListItem(productModel = fakeProduct2)
     }
 }

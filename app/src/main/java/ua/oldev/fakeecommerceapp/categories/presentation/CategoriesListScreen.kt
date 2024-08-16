@@ -16,6 +16,7 @@ import ua.oldev.fakeecommerceapp.R
 import ua.oldev.fakeecommerceapp.categories.presentation.components.CategoriesList
 import ua.oldev.fakeecommerceapp.core.presentation.components.CenteredProgressIndicator
 import ua.oldev.fakeecommerceapp.core.presentation.components.ErrorScreen
+import ua.oldev.fakeecommerceapp.core.presentation.fakeCategories
 import ua.oldev.fakeecommerceapp.core.presentation.theme.ComposeFakeEcommerceAppTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -70,7 +71,7 @@ private fun CategoriesListScreenPreview() {
     ComposeFakeEcommerceAppTheme {
         CategoriesListScreen(
             state = CategoriesListScreenState(
-                categories = listOf("Category 1", "Category 2")
+                categories = fakeCategories
             ),
             onCategoryClick = {}
         )

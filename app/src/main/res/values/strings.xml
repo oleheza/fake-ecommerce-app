@@ -5,4 +5,6 @@
     <string name="failed_to_load_data">Failed to load data</string>
     <string name="retry">Retry</string>
     <string name="products">Products</string>
+    <string name="product_details">Product details</string>
+    <string name="reviews_count_text" formatted="false">%d reviews</string>
 </resources>

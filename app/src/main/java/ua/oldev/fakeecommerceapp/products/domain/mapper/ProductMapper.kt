@@ -7,6 +7,10 @@ fun ProductDTO.toModel(): ProductModel {
     return ProductModel(
         id = this.id,
         title = this.title,
-        image = this.image
+        image = this.image,
+        description = this.description,
+        rate = this.rating.rate,
+        ratingCount = this.rating.count,
+        price = this.price
     )
 }

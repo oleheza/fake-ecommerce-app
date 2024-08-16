@@ -1,4 +1,4 @@
-package ua.oldev.fakeecommerceapp.products.presentation.list
+package ua.oldev.fakeecommerceapp.products.presentation.details
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -11,23 +11,20 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import ua.oldev.fakeecommerceapp.R
 import ua.oldev.fakeecommerceapp.core.presentation.components.CenteredProgressIndicator
-import ua.oldev.fakeecommerceapp.core.presentation.components.ErrorScreen
-import ua.oldev.fakeecommerceapp.core.presentation.fakeProducts
+import ua.oldev.fakeecommerceapp.core.presentation.fakeProduct3
 import ua.oldev.fakeecommerceapp.core.presentation.theme.ComposeFakeEcommerceAppTheme
-import ua.oldev.fakeecommerceapp.products.presentation.list.components.ProductsList
+import ua.oldev.fakeecommerceapp.products.presentation.details.components.ProductDetails
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProductListScreen(
+fun ProductDetailsScreen(
     modifier: Modifier = Modifier,
-    state: ProductListScreenState,
-    onProductClick: (Int) -> Unit,
+    state: ProductDetailsScreenState,
     onBackClick: () -> Unit
 ) {
     Scaffold(
@@ -35,7 +32,7 @@ fun ProductListScreen(
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.products))
+                    Text(text = stringResource(id = R.string.product_details))
                 },
                 navigationIcon = {
                     IconButton(onClick = onBackClick) {
@@ -44,27 +41,14 @@ fun ProductListScreen(
                             contentDescription = "Back button"
                         )
                     }
-                },
+                }
             )
         }
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             when {
                 state.isLoading -> CenteredProgressIndicator()
-                state.failure != null -> ErrorScreen(
-                    text = stringResource(id = R.string.failed_to_load_data),
-                    onRetry = remember {
-                        {
-
-                        }
-                    },
-                )
-
-                state.products.isEmpty() -> Unit
-                else -> ProductsList(
-                    products = state.products,
-                    onProductClick = onProductClick
-                )
+                state.productModel != null -> ProductDetails(productModel = state.productModel)
             }
         }
     }
@@ -72,11 +56,10 @@ fun ProductListScreen(
 
 @Preview
 @Composable
-private fun ProductListScreenPreview() {
+private fun ProductDetailsScreenPreview() {
     ComposeFakeEcommerceAppTheme {
-        ProductListScreen(
-            state = ProductListScreenState(products = fakeProducts),
-            onProductClick = {},
+        ProductDetailsScreen(
+            state = ProductDetailsScreenState(productModel = fakeProduct3),
             onBackClick = {}
         )
     }
