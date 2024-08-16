@@ -11,7 +11,7 @@ sealed class Destination(
         buildString {
             append(route)
             params.forEach { param ->
-                append("/${param}")
+                append("/{$param}")
             }
         }
     }

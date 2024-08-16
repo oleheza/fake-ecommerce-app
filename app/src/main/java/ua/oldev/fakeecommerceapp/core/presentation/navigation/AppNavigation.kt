@@ -10,6 +10,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ua.oldev.fakeecommerceapp.categories.presentation.CategoriesListScreen
 import ua.oldev.fakeecommerceapp.categories.presentation.CategoriesListViewModel
+import ua.oldev.fakeecommerceapp.products.presentation.list.ProductListScreen
+import ua.oldev.fakeecommerceapp.products.presentation.list.ProductListViewModel
 
 @Composable
 fun AppNavigation(
@@ -37,7 +39,21 @@ fun AppNavigation(
         }
 
         composable(Products.fullRoute) {
-
+            val viewModel = hiltViewModel<ProductListViewModel>()
+            val state = viewModel.state.collectAsStateWithLifecycle().value
+            ProductListScreen(
+                state = state,
+                onProductClick = remember {
+                    { productId ->
+                        navHostController.navigate(ProductDetails(productId))
+                    }
+                },
+                onBackClick = remember {
+                    {
+                        navHostController.navigateUp()
+                    }
+                }
+            )
         }
 
         composable(ProductDetails.fullRoute) {

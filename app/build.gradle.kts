@@ -76,6 +76,8 @@ dependencies {
     implementation(libs.retrofit.scalars.converter)
     implementation(libs.timber)
 
+    implementation(libs.koil.compose)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

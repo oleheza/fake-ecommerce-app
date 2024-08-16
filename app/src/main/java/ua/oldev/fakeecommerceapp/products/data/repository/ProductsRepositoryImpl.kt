@@ -1,9 +1,9 @@
-package ua.oldev.fakeecommerceapp.core.data.repository
+package ua.oldev.fakeecommerceapp.products.data.repository
 
 import timber.log.Timber
 import ua.oldev.fakeecommerceapp.core.data.network.dto.ProductDTO
 import ua.oldev.fakeecommerceapp.core.data.network.service.ProductsService
-import ua.oldev.fakeecommerceapp.core.domain.repository.ProductsRepository
+import ua.oldev.fakeecommerceapp.products.domain.repository.ProductsRepository
 import javax.inject.Inject
 
 class ProductsRepositoryImpl @Inject constructor(

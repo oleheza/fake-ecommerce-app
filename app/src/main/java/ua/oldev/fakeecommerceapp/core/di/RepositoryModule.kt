@@ -4,10 +4,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ua.oldev.fakeecommerceapp.core.data.repository.CategoriesRepositoryImpl
-import ua.oldev.fakeecommerceapp.core.data.repository.ProductsRepositoryImpl
-import ua.oldev.fakeecommerceapp.core.domain.repository.CategoriesRepository
-import ua.oldev.fakeecommerceapp.core.domain.repository.ProductsRepository
+import ua.oldev.fakeecommerceapp.categories.data.repository.CategoriesRepositoryImpl
+import ua.oldev.fakeecommerceapp.categories.domain.repository.CategoriesRepository
+import ua.oldev.fakeecommerceapp.products.data.repository.ProductsRepositoryImpl
+import ua.oldev.fakeecommerceapp.products.domain.repository.ProductsRepository
 
 @Module
 @InstallIn(SingletonComponent::class)

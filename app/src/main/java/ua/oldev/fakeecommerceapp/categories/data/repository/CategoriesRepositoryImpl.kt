@@ -1,8 +1,8 @@
-package ua.oldev.fakeecommerceapp.core.data.repository
+package ua.oldev.fakeecommerceapp.categories.data.repository
 
 import timber.log.Timber
+import ua.oldev.fakeecommerceapp.categories.domain.repository.CategoriesRepository
 import ua.oldev.fakeecommerceapp.core.data.network.service.CategoriesService
-import ua.oldev.fakeecommerceapp.core.domain.repository.CategoriesRepository
 import javax.inject.Inject
 
 class CategoriesRepositoryImpl @Inject constructor(

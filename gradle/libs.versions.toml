@@ -16,6 +16,7 @@ retrofit = "2.11.0"
 gson = "2.11.0"
 loggingInterceptor = "4.11.0"
 timber = "5.0.1"
+koil = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,6 +46,8 @@ retrofit-scalars-converter = { group = "com.squareup.retrofit2", name = "convert
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "loggingInterceptor" }
 
 timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+
+koil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "koil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

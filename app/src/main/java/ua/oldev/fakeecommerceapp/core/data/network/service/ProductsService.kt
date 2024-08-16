@@ -6,7 +6,7 @@ import ua.oldev.fakeecommerceapp.core.data.network.dto.ProductDTO
 
 interface ProductsService {
 
-    @GET("/products/{category}")
+    @GET("/products/category/{category}")
     suspend fun getAllInCategory(@Path("category") category: String): List<ProductDTO>
 
     @GET("/products/{product_id}")

@@ -1,4 +1,4 @@
-package ua.oldev.fakeecommerceapp.core.domain.repository
+package ua.oldev.fakeecommerceapp.products.domain.repository
 
 import ua.oldev.fakeecommerceapp.core.data.network.dto.ProductDTO
 

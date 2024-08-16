@@ -1,5 +1,6 @@
-package ua.oldev.fakeecommerceapp.categories.presentation
+package ua.oldev.fakeecommerceapp.products.presentation.list
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,34 +9,39 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ua.oldev.fakeecommerceapp.categories.domain.repository.CategoriesRepository
+import ua.oldev.fakeecommerceapp.core.presentation.navigation.Products.CATEGORY_ID_KEY
+import ua.oldev.fakeecommerceapp.products.domain.mapper.toModel
+import ua.oldev.fakeecommerceapp.products.domain.repository.ProductsRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class CategoriesListViewModel @Inject constructor(
-    private val categoriesRepository: CategoriesRepository
+class ProductListViewModel @Inject constructor(
+    savedStateHandle: SavedStateHandle,
+    private val productsRepository: ProductsRepository
 ) : ViewModel() {
 
-    val state: StateFlow<CategoriesListScreenState>
+    val category = savedStateHandle.get<String>(CATEGORY_ID_KEY).orEmpty()
+
+    val state: StateFlow<ProductListScreenState>
         get() = internalState.asStateFlow()
 
-    private val internalState = MutableStateFlow(CategoriesListScreenState())
+    private val internalState = MutableStateFlow(ProductListScreenState())
 
     init {
-        loadCategories()
+        loadProducts()
     }
 
-    private fun loadCategories() {
+    private fun loadProducts() {
         internalState.update { state -> state.copy(isLoading = true, failure = null) }
         viewModelScope.launch {
-            val result = categoriesRepository.getCategories()
+            val result = productsRepository.getAllInCategory(category)
 
             result.fold(
-                onSuccess = { categories ->
+                onSuccess = { products ->
                     internalState.update { state ->
                         state.copy(
                             isLoading = false,
-                            categories = categories
+                            products = products.map { product -> product.toModel() }
                         )
                     }
                 },
