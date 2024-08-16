@@ -27,6 +27,7 @@ import ua.oldev.fakeecommerceapp.products.presentation.list.components.ProductsL
 fun ProductListScreen(
     modifier: Modifier = Modifier,
     state: ProductListScreenState,
+    onAction: (ProductListAction) -> Unit,
     onProductClick: (Int) -> Unit,
     onBackClick: () -> Unit
 ) {
@@ -55,7 +56,7 @@ fun ProductListScreen(
                     text = stringResource(id = R.string.failed_to_load_data),
                     onRetry = remember {
                         {
-
+                            onAction(ProductListAction.RetryLoading)
                         }
                     },
                 )
@@ -77,6 +78,7 @@ private fun ProductListScreenPreview() {
         ProductListScreen(
             state = ProductListScreenState(products = fakeProducts),
             onProductClick = {},
+            onAction = {},
             onBackClick = {}
         )
     }

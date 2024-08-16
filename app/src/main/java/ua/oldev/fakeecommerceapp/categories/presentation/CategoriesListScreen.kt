@@ -24,6 +24,7 @@ import ua.oldev.fakeecommerceapp.core.presentation.theme.ComposeFakeEcommerceApp
 fun CategoriesListScreen(
     modifier: Modifier = Modifier,
     state: CategoriesListScreenState,
+    onAction: (CategoriesListAction) -> Unit,
     onCategoryClick: (String) -> Unit
 ) {
 
@@ -49,7 +50,7 @@ fun CategoriesListScreen(
                     text = stringResource(id = R.string.failed_to_load_data),
                     onRetry = remember {
                         {
-
+                            onAction(CategoriesListAction.RetryLoading)
                         }
                     }
                 )
@@ -73,6 +74,7 @@ private fun CategoriesListScreenPreview() {
             state = CategoriesListScreenState(
                 categories = fakeCategories
             ),
+            onAction = {},
             onCategoryClick = {}
         )
     }
@@ -86,6 +88,7 @@ private fun CategoriesListScreenFailurePreview() {
             state = CategoriesListScreenState(
                 failure = Exception()
             ),
+            onAction = {},
             onCategoryClick = {}
         )
     }

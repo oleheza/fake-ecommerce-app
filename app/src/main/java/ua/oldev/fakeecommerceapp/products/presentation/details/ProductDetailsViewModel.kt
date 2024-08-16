@@ -31,6 +31,12 @@ class ProductDetailsViewModel @Inject constructor(
         loadProductDetails()
     }
 
+    fun onAction(action: ProductDetailsAction) {
+        when (action) {
+            ProductDetailsAction.RetryLoading -> loadProductDetails()
+        }
+    }
+
     private fun loadProductDetails() {
         internalState.update { state -> state.copy(isLoading = true, failure = null) }
         viewModelScope.launch {

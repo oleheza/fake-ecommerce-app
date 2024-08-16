@@ -11,11 +11,13 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import ua.oldev.fakeecommerceapp.R
 import ua.oldev.fakeecommerceapp.core.presentation.components.CenteredProgressIndicator
+import ua.oldev.fakeecommerceapp.core.presentation.components.ErrorScreen
 import ua.oldev.fakeecommerceapp.core.presentation.fakeProduct3
 import ua.oldev.fakeecommerceapp.core.presentation.theme.ComposeFakeEcommerceAppTheme
 import ua.oldev.fakeecommerceapp.products.presentation.details.components.ProductDetails
@@ -25,6 +27,7 @@ import ua.oldev.fakeecommerceapp.products.presentation.details.components.Produc
 fun ProductDetailsScreen(
     modifier: Modifier = Modifier,
     state: ProductDetailsScreenState,
+    onAction: (ProductDetailsAction) -> Unit,
     onBackClick: () -> Unit
 ) {
     Scaffold(
@@ -48,6 +51,15 @@ fun ProductDetailsScreen(
         Box(modifier = Modifier.padding(innerPadding)) {
             when {
                 state.isLoading -> CenteredProgressIndicator()
+                state.failure != null -> ErrorScreen(
+                    text = stringResource(id = R.string.failed_to_load_data),
+                    onRetry = remember {
+                        {
+                            onAction(ProductDetailsAction.RetryLoading)
+                        }
+                    }
+                )
+
                 state.productModel != null -> ProductDetails(productModel = state.productModel)
             }
         }
@@ -60,6 +72,7 @@ private fun ProductDetailsScreenPreview() {
     ComposeFakeEcommerceAppTheme {
         ProductDetailsScreen(
             state = ProductDetailsScreenState(productModel = fakeProduct3),
+            onAction = {},
             onBackClick = {}
         )
     }

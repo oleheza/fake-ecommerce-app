@@ -32,6 +32,7 @@ fun AppNavigation(
             val state = viewModel.state.collectAsStateWithLifecycle().value
             CategoriesListScreen(
                 state = state,
+                onAction = viewModel::onAction,
                 onCategoryClick = remember {
                     { category ->
                         navHostController.navigate(Products(category))
@@ -45,6 +46,7 @@ fun AppNavigation(
             val state = viewModel.state.collectAsStateWithLifecycle().value
             ProductListScreen(
                 state = state,
+                onAction = viewModel::onAction,
                 onProductClick = remember {
                     { productId ->
                         navHostController.navigate(ProductDetails(productId))
@@ -63,6 +65,7 @@ fun AppNavigation(
             val state = viewModel.state.collectAsStateWithLifecycle().value
             ProductDetailsScreen(
                 state = state,
+                onAction = viewModel::onAction,
                 onBackClick = remember {
                     {
                         navHostController.navigateUp()

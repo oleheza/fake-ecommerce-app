@@ -31,6 +31,12 @@ class ProductListViewModel @Inject constructor(
         loadProducts()
     }
 
+    fun onAction(action: ProductListAction) {
+        when (action) {
+            ProductListAction.RetryLoading -> loadProducts()
+        }
+    }
+
     private fun loadProducts() {
         internalState.update { state -> state.copy(isLoading = true, failure = null) }
         viewModelScope.launch {

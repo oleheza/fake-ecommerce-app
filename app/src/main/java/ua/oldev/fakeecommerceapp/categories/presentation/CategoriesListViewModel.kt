@@ -25,6 +25,12 @@ class CategoriesListViewModel @Inject constructor(
         loadCategories()
     }
 
+    fun onAction(action: CategoriesListAction) {
+        when (action) {
+            CategoriesListAction.RetryLoading -> loadCategories()
+        }
+    }
+
     private fun loadCategories() {
         internalState.update { state -> state.copy(isLoading = true, failure = null) }
         viewModelScope.launch {
